@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5"/>
+    <title >PIEDRA PAPEL Y TIJERA</title>
+
+</head>
+<body>
+    <h1 style="background-color:beige; text-align:center"> 💎 📰 ✂️ PIEDRA - PAPEL - TIJERA ✂️ 📰 💎</h1>
+    <?php
+    define('piedraicon',"&#x270A");
+    define('tijeraicon',"&#x270C;");
+    define('papelicon',"&#x1F590;" );
+    function ALEATORIO(){
+    $piedra="&#x270A";
+    $papel="&#x1F590;";
+    $tijera="&#x270C;";
+    #la opción de la persona que está a la izquierda
+    $saleizquierda=array('piedraicon','tijeraicon','papelicon');
+    $izquierda=$saleizquierda[array_rand($saleizquierda)];
+    #la opcion de la persona que está a la derecha
+    $salederecha=array('piedraicon','tijeraicon','papelicon');
+    $derecha=$salederecha[array_rand($salederecha)];
+        
+        #RESULTADOS POSIBLES CON PIEDRA
+        if(($izquierda=='piedraicon')&&($derecha=='piedraicon')){
+            ?>
+            <h1 style="text-align:center"><?php echo "hay un empate"?></h1>
+            <h2 style="float:left;"><?php echo $piedra?></h2>
+            <h2 style="float:right;"><?php echo $piedra?></h2>
+           <?php
+            
+        }else if(($izquierda=='piedraicon')&&($derecha=='papelicon')){?>
+          
+                 <h1 style="text-align:center"><?php echo "gana el de la derecha"?></h1>
+                 <h2 style="float:left;"><?php echo $piedra?></h2>
+                 <h2 style="float:right;"><?php echo $papel?></h2>
+          
+           <?php  
+        }else if(($izquierda=='piedraicon')&&($derecha=='tijeraicon')){
+            ?>
+            <h1 style="text-align:center"> <?php echo "gana el de la izquierda"?> </h1>
+            <h2 style="float:left;"><?php echo $piedra?></h2>
+            <h2 style="float:right;"><?php echo $tijera?></h2>
+        <?php
+        #OPCIONES CON PAPEL
+        }else if(($izquierda=='papelicon')&&($derecha=='papelicon')){?>
+            <h1 style="text-align:center"><?php echo "hay un empate";?></h1>
+            <h2 style="float:left;"><?php echo $papel?></h2>
+            <h2 style="float:right;"><?php echo $papel?></h2>
+           <?php   
+        }else if(($izquierda=='papelicon')&&($derecha=='piedraicon')){?>
+          <h1 style="text-align:center"><?php echo " gana el de la izquierda"?></h1>      
+          <h2 style="float:left;"><?php echo $papel?></h2>
+          <h2 style="float:right;"><?php echo $piedra?></h2> 
+        
+         <?php  
+        }else if(($izquierda=='papelicon')&&($derecha=='tijeraicon')){?>
+            <h1 style="text-align:center"><?php echo "gana el de la derecha"?></h1>
+            <h2 style="float:left;"><?php echo $papel?></h2>
+            <h2 style="float:right;"><?php echo $tijera?></h2>
+           
+           <?php   
+
+         #OPCIONES CON TIJERA
+
+        }else if(($izquierda =='tijeraicon')&&($derecha =='tijeraicon')){?>
+
+                <h1 style="text-align:center"><?php echo "hay un empate"?></h1>
+                <h2 style="float:left;"><?php echo $tijera?></h2>
+                <h2 style="float:right;"><?php echo $tijera?></h2>
+           <?php  
+    
+            }else if(($izquierda =='tijeraicon')&&($derecha =='piedraicon')){?>
+              
+                <h1 style="text-align:center"><?php echo "gana el de la derecha"?></h1>
+                <h2 style="float:left;"><?php echo $tijera?></h2>
+                <h2 style="float:right;"><?php echo $piedra?></h2>
+                
+               <?php   
+            }else if(($izquierda =='tijeraicon')&&($derecha =='papelicon')){?>
+            
+                <h1 style="text-align:center"><?php echo "gana el de la izquierda"?></h1>
+                <h2 style="float:left;"><?php echo $tijera?></h2>
+                <h2 style="float:right;"><?php echo $papel?></h2>
+             
+               <?php  
+
+    }
+}
+ALEATORIO();
+    ?> 
+</body>
+
+<footer style="color:bisque; text-align:center"> Elisa Fernandez 2DAW </footer>
+</html>
