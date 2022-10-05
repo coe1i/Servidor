@@ -21,8 +21,8 @@ define("6","&#9861;");
 
 define("total_d",[]);
 
-define("totalJugador1",0);
-define("totalJugador2",0);
+define("total1",0);
+define("total2",0);
 
 $total1=0;
 $total2=0;
