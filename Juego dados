@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 🎲 Los cinco dados 🎲 </title>
+    <h1> Actualice la página para volver a tirar los dados </h1>
+</head>
+<body>
+    
+
+<?php
+
+define("1","&#9856;");
+define("2","&#9857;");
+define("3","&#9858;");
+define("4","&#9859;");
+define("5","&#9860;");
+define("6","&#9861;");
+
+define("total_d",[]);
+
+define("totalJugador1",0);
+define("totalJugador2",0);
+
+$total1=0;
+$total2=0;
+
+
+function eleccionUNO(&$total1){
+$d1="&#9856;";
+$d2="&#9857;";
+$d3="&#9858;";
+$d4="&#9859;";
+$d5="&#9860;";
+$d6="&#9861;";
+
+    
+    $primeratirada=[];
+    for($i=0;$i<5;$i++){
+        $primeratirada[$i]=random_int(1,6);
+    }
+    $max_=max($primeratirada);
+    $min_=min($primeratirada);
+    
+    foreach($primeratirada as $key=>$valor){
+        $total1+=$valor;
+       
+        switch($valor){
+            case 1:
+                $primeratirada[$key]=$d1;
+                
+            break;
+            case 2:
+                $primeratirada[$key]=$d2;
+            break;
+            case 3:
+                $primeratirada[$key]=$d3;
+            break;
+            case 4:
+                $primeratirada[$key]=$d4;
+            break;
+            case 5:
+                $primeratirada[$key]=$d5;
+            break;
+            case 6:
+                $primeratirada[$key]=$d6;
+                
+            break;
+        }
+    }
+    
+  foreach($primeratirada as $key =>$valor){
+        echo $valor;    
+    }
+    echo "<br>";
+    $total1=$total1-$max_-$min_;
+}
+
+?>
+<hr>
+<?php
+function eleccionDOS(&$total2){
+$d1="&#9856;";
+$d2="&#9857;";
+$d3="&#9858;";
+$d4="&#9859;";
+$d5="&#9860;";
+$d6="&#9861;";
+
+$segundatirada=[];
+    for($i=0;$i<5;$i++){
+        $segundatirada[$i]=random_int(1,6);
+    }
+   
+    $max_=max($segundatirada);
+    $min_=min($segundatirada);
+    
+    foreach($segundatirada as $key=>$valor){
+        $total2+=$valor;
+        
+        switch($valor){
+            case 1:
+                $segundatirada[$key]=$d1;
+                
+            break;
+            case 2:
+                $segundatirada[$key]=$d2;
+                
+            break;
+            case 3:
+                $segundatirada[$key]=$d3;
+                
+            break;
+            case 4:
+                $segundatirada[$key]=$d4;
+                
+            break;
+            case 5:
+                $segundatirada[$key]=$d5;
+            break;
+            case 6:
+                $segundatirada[$key]=$d6;
+                
+            break;
+        }
+        
+    }
+    
+    foreach($segundatirada as $key=>$valor){
+        echo $valor;    
+    }
+    $total2=$total2-$max_-$min_;
+}
+function QUIENGANA(&$total1,&$total2){
+    if($total1>$total2){
+
+
+
+        echo "<h2> gana jugador 1 </h2>";
+    }else{
+
+
+
+        echo "<h2> gana jugador 2 </h2>";
+    }
+}
+
+
+?>
+
+<table border="2" style="border:border-collapse;"> 
+    <tr>
+        <th><h1>  jugador 1  </h1></th>
+        <td style="color:cornflowerblue; padding-left: 50px; padding-right: 50px;"><h1 style="font-size:80;"><?php eleccionUNO($total1);?></h1></td>
+        <td><?php echo "<h1>$total1 puntos</td>"?></td>
+    </tr>
+    <tr>
+        <th><h1>  jugador 2  </h1></th>
+        <td style="color:darksalmon; padding-left: 50px; padding-right: 50px;" ><h1 style="font-size:80;"><?php eleccionDOS($total2);?></h1></td>
+        <td ><?php echo "<h1>$total2 puntos</td>"?></td>
+    </tr>
+
+</table>
+
+<h1><?php 
+
+QUIENGANA($total1,$total2);
+?></h1>
+
+</body>
+</html>
