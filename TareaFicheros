@@ -25,19 +25,19 @@
         $arrayimagen=[];
         $codigosErrorSubida=[
             UPLOAD_ERR_OK         => 'Subida correcta',
-            UPLOAD_ERR_INI_SIZE   => 'El tamaño del imagen excede el admitido por el servidor',
-            UPLOAD_ERR_FORM_SIZE  => 'El tamaño del imagen excede el admitido por el cliente', 
-            UPLOAD_ERR_PARTIAL    => 'El imagen no se pudo subir completamente',
-            UPLOAD_ERR_NO_FILE    => 'No se seleccionó ningún imagen para ser subido',
-            UPLOAD_ERR_NO_TMP_DIR => 'No existe un directorio temporal donde subir el imagen',
-            UPLOAD_ERR_CANT_WRITE => 'No se pudo guardar el imagen en disco',  
-            UPLOAD_ERR_EXTENSION  => 'Una extensión PHP evito la subida del imagen', 
+            UPLOAD_ERR_INI_SIZE   => 'El tamaño del archivo excede el admitido por el servidor',
+            UPLOAD_ERR_FORM_SIZE  => 'El tamaño del archivo excede el admitido por el cliente', 
+            UPLOAD_ERR_PARTIAL    => 'El archivo no se pudo subir completamente',
+            UPLOAD_ERR_NO_FILE    => 'No se seleccionó ningún archivo para ser subido',
+            UPLOAD_ERR_NO_TMP_DIR => 'No existe un directorio temporal donde subir el archivo',
+            UPLOAD_ERR_CANT_WRITE => 'No se pudo guardar el archivo en disco',  
+            UPLOAD_ERR_EXTENSION  => 'Una extensión PHP evito la subida del archivo', 
         ];
 
         function tamanoimagen($imagen){
             for ($i=0; $i <count($imagen["size"]) ; $i++) {
                 if ($imagen["size"][$i]>200000) {
-                        echo("El imagen ".$imagen["name"][$i]." es demasiado grande para poder subirlo <br>");
+                        echo("la imagen ".$imagen["name"][$i]." es demasiado grande para poder subirlo <br>");
                 }
             }
         }
