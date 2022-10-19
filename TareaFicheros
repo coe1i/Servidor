@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<?php if($_SERVER["REQUEST_METHOD"]=="GET"):?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAREA formularios</title>
+</head>
+<body>
+
+    <form enctype="multipart/form-data" action="ejfichero.php" method="POST">
+
+        <label for="directorio">
+        Click aquí para subir tus imagenes
+        </label>
+        <br><br>
+        <input type="file" name="imagen[]" value="contenido" multiple accept="image/jpeg | image/png">
+        <br><br>
+        <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
+        <input type="submit" value="enviar">
+    </form>
+<?php else :?>
+    <?php
+        $arrayimagen=[];
+        $codigosErrorSubida=[
+            UPLOAD_ERR_OK         => 'Subida correcta',
+            UPLOAD_ERR_INI_SIZE   => 'El tamaño del imagen excede el admitido por el servidor',
+            UPLOAD_ERR_FORM_SIZE  => 'El tamaño del imagen excede el admitido por el cliente', 
+            UPLOAD_ERR_PARTIAL    => 'El imagen no se pudo subir completamente',
+            UPLOAD_ERR_NO_FILE    => 'No se seleccionó ningún imagen para ser subido',
+            UPLOAD_ERR_NO_TMP_DIR => 'No existe un directorio temporal donde subir el imagen',
+            UPLOAD_ERR_CANT_WRITE => 'No se pudo guardar el imagen en disco',  
+            UPLOAD_ERR_EXTENSION  => 'Una extensión PHP evito la subida del imagen', 
+        ];
+
+        function tamanoimagen($imagen){
+            for ($i=0; $i <count($imagen["size"]) ; $i++) {
+                if ($imagen["size"][$i]>200000) {
+                        echo("El imagen ".$imagen["name"][$i]." es demasiado grande para poder subirlo <br>");
+                }
+            }
+        }
+        function existeono(){
+            if ($_FILES["imagen"]["name"][0]=="") {
+                exit ("es necesario adjuntar algo para poder subirlo :( ");
+           }
+           else
+           return $_FILES["imagen"];
+        }
+        function infosubida($imagen){
+            for ($i=0; $i < count($imagen["name"]); $i++) {
+               echo("SUBIENDO:".$imagen["name"][$i])."<br>";
+               echo("FORMATO:".$imagen["type"][$i]."<br>");
+               echo("TAMAÑO EN KB:".$imagen["size"][$i]." <br>" );
+            }
+        }
+        function tamanototal($imagen){
+            $suma=0;
+            foreach ($imagen["size"] as $key => $value) {
+               $suma+=intval($imagen["size"]);
+               if ($suma>300000) {
+                  echo ("El archivo es demasiado grande");
+               }
+            }
+        }
+
+        function codigoserrores($imagen){
+            global $codigosErrorSubida;
+            for ($i=0; $i <count($imagen["name"]) ; $i++) {
+                $nombreimagen=$imagen["name"][$i];
+                $mensaje=($imagen["error"][$i]==0)?" todo está correctamente con el archivo $nombreimagen":"error ".$imagen["error"][$i]." ( ".$codigosErrorSubida[$imagen["error"][$i]] .")";
+                echo("$mensaje <br>");
+            }
+        }
+
+        function moveraIMGUSERS($imagen,$nombreimagen){
+            $destino="C:/xampp/htdocs/imgusers" ."/".$nombreimagen;
+            move_uploaded_file($imagen, $destino);
+           
+        }
+            $imagen=existeono();
+            infosubida($imagen);
+            tamanototal($imagen);
+            tamanoimagen($imagen);
+            codigoserrores($imagen);
+
+    ?>
+<?php endif?>
+</body>
+</html>
